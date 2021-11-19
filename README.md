@@ -1,5 +1,7 @@
-# Usage 
+# What is this?
 
+Is a lib to extract information to mount preview.
+For Example: When you insert a url on chat how WhatsApp is mounted an preview of website in the question.
 
 ### Install
 
