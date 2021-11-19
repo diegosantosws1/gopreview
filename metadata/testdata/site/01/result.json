@@ -1,0 +1,6 @@
+{
+	"title": "Convertendo datas em string usando Golang",
+	"description": "Neste post vou mostrar como converter data em string.\nEm Go isso é muito simples, pois já foi pensado para ser simples.\nVeja um exemplo, onde usaremos o pacote time da própria linguagem para trabalhar a data atual.\nimport ( \u0026#34;time\u0026#34; \u0026#34;fmt\u0026#34; ) func main() { now := time.Now() } A variável now recebe o valor de time.Now, mas ainda temos um valor do tipo time.Time. O código assim se executado vai gerar um erro, por que não podemos declarar uma variável e não usa-lá.",
+	"image": "https://diegosantosws.com.br",
+	"url": "https://diegosantosws.com.br/posts/2021/06/convertendo-datas-em-string-usando-golang/"
+}
