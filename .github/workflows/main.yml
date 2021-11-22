@@ -16,6 +16,7 @@ jobs:
       - name: Run golint
         run: golint ./...
   gotest:
+    needs: ["golint"]
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2

@@ -7,11 +7,11 @@ import (
 )
 
 // ExtractMatadata extract
-func ExtractMatadata(read io.ReadCloser, where string) (hm HTMLMeta, err error) {
+func ExtractMatadata(read io.Reader, where string) (hm HTMLMeta, err error) {
 	return extractMetadata(read, where)
 }
 
-func extractMetadata(read io.ReadCloser, where string) (hm HTMLMeta, err error) {
+func extractMetadata(read io.Reader, where string) (hm HTMLMeta, err error) {
 	doc, err := goquery.NewDocumentFromReader(read)
 	if err != nil {
 		return
