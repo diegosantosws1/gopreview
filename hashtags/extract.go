@@ -20,7 +20,7 @@ func GetHashtags(msg string) (hashtags []string, err error) {
 
 	hashtags = searchingHashtags.FindAllString(msg, -1)
 	if len(hashtags) == 0 {
-		err = ErrMsgEmpty
+		err = ErrHashtagNotFound
 	}
 	return
 }
@@ -34,7 +34,7 @@ func GetSentenceWithoutHashtag(msg string) (tags []string, err error) {
 
 	hashtags := searchingHashtags.FindAllString(msg, -1)
 	if len(hashtags) == 0 {
-		err = ErrMsgEmpty
+		err = ErrHashtagNotFound
 		return
 	}
 
