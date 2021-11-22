@@ -22,7 +22,7 @@ func TestGetHashtags(t *testing.T) {
 	}{
 		{
 			Name:   "1 hastag",
-			Msg:    "Olá #você, #caçar, vamos nos falar mais",
+			Msg:    "Olá #voce, vamos nos falar mais",
 			LenExp: 1,
 		},
 		{

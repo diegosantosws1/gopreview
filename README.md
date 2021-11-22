@@ -34,3 +34,34 @@ func main() {
 	"url": "https://www.infomoney.com.br/mercados/ambev-abev3-tem-preco-alvo-elevado-pelo-morgan-stanley-mas-analistas-do-banco-seguem-ceticos-com-acao/"
 }
 ```
+
+# Extracting hastag of text
+
+To extract the hashtag of text is complexible... Noooooooooo, why create a simple lib for help. seen more
+
+> In impletatian return the sentence how write in the text.
+
+```go
+func main() {
+    strings := "Olá isso aqui é #bomdemais, obrigado por me chamar."
+    hashtags, err := gopreview.ParserHashtags(url, false)
+    if err != nil {
+        log.Printf("%v", err)
+        return
+    }
+}
+```
+
+> to return the sentence without hashtags, you usage
+```go
+func main() {
+    strings := "Olá isso aqui é #bomdemais, obrigado por me chamar."
+    hashtags, err := gopreview.ParserHashtags(url, true)
+    if err != nil {
+        log.Printf("%v", err)
+        return
+    }
+}
+```
+
+PS.: The, return of two implementation is an array of string
