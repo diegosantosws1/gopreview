@@ -1,0 +1,29 @@
+name: Test
+on:
+  push:
+    branches:
+      - "main"
+jobs:
+  golint:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-go@v2
+        with:
+          go-version: 1.17
+      - name: Run env prepare golint
+        run: go install golang.org/x/lint/golint@latest
+      - name: Run golint
+        run: golint ./...
+  gotest:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-go@v2
+        with:
+          go-version: 1.17
+      - name: Run
+        run: |
+          go mod download
+      - name: Run go test
+        run: go test -v ./...
