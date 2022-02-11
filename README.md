@@ -43,25 +43,46 @@ To extract the hashtag of text is complexible... Noooooooooo, why create a simpl
 
 ```go
 func main() {
-    strings := "Olá isso aqui é #bomdemais, obrigado por me chamar."
-    hashtags, err := gopreview.ParserHashtags(url, false)
+    text := "Olá isso aqui é #bomdemais, obrigado por me chamar. #iloveyou"
+    hashtags, err := gopreview.ParserHashtags(text, false)
     if err != nil {
         log.Printf("%v", err)
         return
     }
 }
+
+// Result example
+
+/**
+    println(hashtags)
+    [
+        "#bomdemais",
+        "#iloveyou"
+    ]
+**/
 ```
 
 > to return the sentence without hashtags, you usage
+
 ```go
 func main() {
-    strings := "Olá isso aqui é #bomdemais, obrigado por me chamar."
-    hashtags, err := gopreview.ParserHashtags(url, true)
+    text := "Olá isso aqui é #bomdemais, obrigado por me chamar. #EuAmoVC"
+    hashtags, err := gopreview.ParserHashtags(text, true)
     if err != nil {
         log.Printf("%v", err)
         return
     }
 }
+
+// Result example
+/**
+    println(hashtags)
+    [
+        "bomdemais",
+        "EuAmoVC"
+    ]
+**/
+
 ```
 
 PS.: The, return of two implementation is an array of string
