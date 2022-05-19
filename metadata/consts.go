@@ -1,6 +1,6 @@
 package metadata
 
-const (
-	ErrMetadataNotFound = "[ gopreview ] metadata not found"
-	ErrMetadataIsHazy   = "[ gopreview ] metadata is hazy"
-)
+import "errors"
+
+var ErrMetadataNotFound = errors.New("[ gopreview ] metadata not found")
+var ErrMetadataIsHazy = errors.New("[ gopreview ] metadata is hazy")
