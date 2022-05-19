@@ -1,6 +1,7 @@
 package metadata_test
 
 import (
+	"errors"
 	"strings"
 	"testing"
 
@@ -52,9 +53,35 @@ func TestExtractMetadata(t *testing.T) {
 		},
 	}
 
+	testErrorCases := []struct {
+		Name          string
+		URL           string
+		InFile        string
+		ExpectedError error
+	}{
+		{
+			Name:          "Youtube - landing page",
+			URL:           "https://www.youtube.com/",
+			InFile:        "./testdata/errcase/01/data.html",
+			ExpectedError: errors.New(metadata.ErrMetadataIsHazy),
+		},
+		{
+			Name:          "Rico - landing page",
+			URL:           "https://www.rico.com.vc/",
+			InFile:        "./testdata/errcase/02/data.html",
+			ExpectedError: errors.New(metadata.ErrMetadataNotFound),
+		},
+	}
+
 	for _, tc := range testCases {
 		t.Run(tc.Name, func(t *testing.T) {
 			testExtractMetadata(t, tc.Name, tc.URL, tc.InFile, tc.OutFile)
+		})
+	}
+
+	for _, eC := range testErrorCases {
+		t.Run(eC.Name, func(t *testing.T) {
+			testExtractMetadataErrors(t, eC.Name, eC.URL, eC.InFile, eC.ExpectedError)
 		})
 	}
 }
@@ -83,4 +110,25 @@ func testExtractMetadata(t *testing.T, name, url, inFile, outFile string) {
 		return
 	}
 
+}
+
+func testExtractMetadataErrors(t *testing.T, name, url, inFile string, expected error) {
+	if *htmlcreate {
+		read, err := metadata.NewRequest(url)
+		if err != nil {
+			t.Fatal(err)
+		}
+		createFileFromReader(t, inFile, read)
+		return
+	}
+
+	r, _ := readFile(t, inFile)
+	_, err := metadata.ExtractMatadata(r, "meta")
+
+	if err == nil {
+		t.Errorf("test failed, expected an error but got [ %s ]", err)
+	}
+	if err.Error() != expected.Error() {
+		t.Errorf("test [ %s ] failed, expected [ %s ] but got [ %s ]", name, expected, err)
+	}
 }
