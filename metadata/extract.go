@@ -41,7 +41,7 @@ func extractMetadata(read io.Reader, where string) (hm HTMLMeta, err error) {
 		}
 	})
 
-	if hm.Title == "" && hm.Description == "" && hm.Image == "" && hm.URL == "" {
+	if len(hm.Title) == 0 && len(hm.Description) == 0 && len(hm.Image) == 0 && len(hm.URL) == 0 {
 		return HTMLMeta{}, ErrMetadataNotFound
 	}
 	if hm.Title == hm.Image || hm.Title == hm.URL {
