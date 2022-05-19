@@ -1,6 +1,7 @@
 package metadata
 
 import (
+	"errors"
 	"io"
 
 	"github.com/PuerkitoBio/goquery"
@@ -40,6 +41,13 @@ func extractMetadata(read io.Reader, where string) (hm HTMLMeta, err error) {
 			hm.URL = val
 		}
 	})
+
+	if hm.Title == "" {
+		return HTMLMeta{}, errors.New(ErrMetadataNotFound)
+	}
+	if hm.Title == hm.Image || hm.Title == hm.URL {
+		return HTMLMeta{}, errors.New(ErrMetadataIsHazy)
+	}
 
 	return
 }
