@@ -1,7 +1,6 @@
 package metadata_test
 
 import (
-	"errors"
 	"strings"
 	"testing"
 
@@ -63,13 +62,13 @@ func TestExtractMetadata(t *testing.T) {
 			Name:          "Youtube - landing page",
 			URL:           "https://www.youtube.com/",
 			InFile:        "./testdata/errcase/01/data.html",
-			ExpectedError: errors.New(metadata.ErrMetadataIsHazy),
+			ExpectedError: metadata.ErrMetadataIsHazy,
 		},
 		{
 			Name:          "Rico - landing page",
 			URL:           "https://www.rico.com.vc/",
 			InFile:        "./testdata/errcase/02/data.html",
-			ExpectedError: errors.New(metadata.ErrMetadataNotFound),
+			ExpectedError: metadata.ErrMetadataNotFound,
 		},
 	}
 
